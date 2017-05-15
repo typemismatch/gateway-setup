@@ -161,6 +161,9 @@ pip install --upgrade --user awscli
 #Install NANO
 apt-get install nano -y
 
+#Set some of permissions
+chmod a+x /home/aws/gateway-setup/agent/lib-systemd-system/setup.sh
+
 echo -e "\n${Y}********** End of Script ***********${NC}\n"
 echo -e "${Y}********** Rebooting after installation **********${NC}\n"
 sleep 3
