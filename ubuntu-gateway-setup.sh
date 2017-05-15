@@ -120,7 +120,7 @@ if [ "$platform" == "$CORE_PLATFORM" ]; then
 
     echo -e "${Y}Install mosquitto broker and client modules...${NC}\n"
     apt-get install -y mosquitto mosquitto-clients
-    
+
     echo -e "${Y}Install InfluxDB database...${NC}\n"
     apt-get install -y influxdb
 
@@ -151,6 +151,15 @@ source ~/.bashrc
 
 #Download and install XDK daemon to connect to XDK
 install_xdk_daemon
+
+#Install PIP
+apt-get install python-pip -y
+
+#Install AWS CLI
+pip install --upgrade --user awscli
+
+#Install NANO
+apt-get install nano -y
 
 echo -e "\n${Y}********** End of Script ***********${NC}\n"
 echo -e "${Y}********** Rebooting after installation **********${NC}\n"

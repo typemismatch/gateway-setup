@@ -1,0 +1,15 @@
+[Unit]
+Description=AWS IoT NUC Agent
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Restart=on-failure
+RestartSec=10s
+Environment="NODE_PATH=/usr/lib/node_modules"
+Environment="AVAHI_COMPAT_NOWARN=1"
+WorkingDirectory=/home/aws/gateway-setup/agent/device_startup
+ExecStart=/usr/bin/node /home/aws/gateway-setup/agent/device_startup/register-device-lite.js
+
+[Install]
+WantedBy=multi-user.target
