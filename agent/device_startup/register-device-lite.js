@@ -1,8 +1,8 @@
 var fs                  = require('fs');
 var async               = require('async');
 var networkutils        = require("./networkUtils");
-var ourIPAddress        = networkutils.getFirstAvailableNetworkAddress("en0,eth0,wlan0");
-var ourMACAddress       = networkutils.getFirstAvailableMACAddress("en0,eth0,wlan0");
+var ourIPAddress        = networkutils.getFirstAvailableNetworkAddress("enp3s0");
+var ourMACAddress       = networkutils.getFirstAvailableMACAddress("enp3s0");
 var deviceConfig        = JSON.parse(fs.readFileSync("device.config.json", 'utf8'));
 
 ////////////////////////////////////////////////////////////
@@ -25,9 +25,9 @@ var device = awsIot.device({
 	"port": 8883,
 	"clientId": deviceConfig.thingName,
 	"thingName": deviceConfig.thingName,
-	"caPath": "./rootCA.pem",
-	"certPath": "./certificate.pem",
-	"keyPath": "./privateKey.pem",
+	"caPath": "/home/aws/gateway-setup/agent/device_startup/rootCA.pem",
+	"certPath": "/home/aws/gateway-setup/agent/device_startup/certificate.pem",
+	"keyPath": "/home/aws/gateway-setup/agent/device_startup/privateKey.pem",
   "region": "us-west-2"
 });
 

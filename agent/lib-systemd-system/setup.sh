@@ -5,5 +5,5 @@ npm install
 
 cd ..
 cd lib-systemd-system
-systemctl enable nuc-device-register-lite.service
+systemctl enable /home/aws/gateway-setup/agent/lib-systemd-system/nuc-device-register-lite.service
 systemctl start nuc-device-register-lite.service
