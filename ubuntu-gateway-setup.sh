@@ -79,7 +79,7 @@ source ~/.bashrc
 apt-get install python-pip -y
 
 #Install AWS CLI
-pip install --upgrade --user awscli
+pip install --upgrade awscli
 
 #Install NANO
 apt-get install nano -y
