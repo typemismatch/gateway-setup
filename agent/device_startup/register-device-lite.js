@@ -4,6 +4,9 @@ var networkutils        = require("./networkUtils");
 var ourIPAddress        = networkutils.getFirstAvailableNetworkAddress("enp3s0");
 var ourMACAddress       = networkutils.getFirstAvailableMACAddress("enp3s0");
 var deviceConfig        = JSON.parse(fs.readFileSync("device.config.json", 'utf8'));
+var mraa 								= require ('mraa');
+var LCD                 = require ('jsupm_i2clcd');
+var localLCD						= new LCD.Jhd1313m1(6, 0x3E, 0x62);
 
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
@@ -80,6 +83,13 @@ function registerDevice(next)
     "thing_name" : deviceConfig.thingName,
     "last-seen" : new Date()
   };
+
+	// Update our LCD
+	localLCD.clear();
+	localLCD.setCursor(1,0);
+	localLCD.write(ourIPAddress);
+  localLCD.setCursor(0,0);
+	localLCD.write("Local IP:");
 
   device.publish(deviceConfig.thingTopic, JSON.stringify(data));
   setTimeout(()=>
