@@ -89,7 +89,7 @@ function registerDevice(next)
 	localLCD.setCursor(1,0);
 	localLCD.write(ourIPAddress);
   localLCD.setCursor(0,0);
-	localLCD.write("Local IP:");
+	localLCD.write("I am " + deviceConfig.thingName + " on");
 
   device.publish(deviceConfig.thingTopic, JSON.stringify(data));
   setTimeout(()=>
