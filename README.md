@@ -1,5 +1,6 @@
 # Ubuntu on NUC
 
+This is a slimmer version just for workshops without node-red and other Intel platform tools.
 
 ## Install Ubuntu Server
 
@@ -22,7 +23,7 @@ English all (default settings, just hit enter)
 
 ### If 4GB model:
 * Manual partition:
-* Delete all partitions 
+* Delete all partitions
 * Create 150MB logical at beginning, use as EFI system partition area – bootable flag on
 * Create 3.7 primary, use as Ext4, mount point /, bootable flag off
 * Create ~100 MB (rest of disk) logical at beginning, use as swap area – bootable flag off,
@@ -38,7 +39,7 @@ English all (default settings, just hit enter)
 * Give the password 'root' which you just set  
 * Next fetch the ubuntu installation script and run it  
   `root@ubuntu-nuc:/home/nuc-user# cd ~`  
-  `root@ubuntu-nuc:~# git clone https://github.com/SSG-DRD-IOT/gateway-setup.git`  
+  `root@ubuntu-nuc:~# git clone https://github.com/typemismatch/gateway-setup.git`  
   `root@ubuntu-nuc:~# cd gateway-setup`  
   `root@ubuntu-nuc:~/gateway-setup# ./ubuntu-gateway-setup.sh`  
 * After script completes your system will reboot
