@@ -87,6 +87,13 @@ apt-get install nano -y
 #Set some of permissions
 chmod a+x /home/aws/gateway-setup/agent/lib-systemd-system/setup.sh
 
+#Install the FIRMATA to the Arduino
+imraa -af
+
+#Add the cli to bash
+echo 'export PATH=~/.local/bin:$PATH' >> ~/.bash_profile
+echo 'export PATH=~/.local/bin:$PATH' >> /home/aws/.bash_profile
+
 echo -e "\n${Y}********** End of Script ***********${NC}\n"
 echo -e "${Y}********** Rebooting after installation **********${NC}\n"
 sleep 3
