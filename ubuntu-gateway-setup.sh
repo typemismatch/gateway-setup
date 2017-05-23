@@ -22,6 +22,29 @@ install_node() {
     apt-get install -y nodejs
 }
 
+install_and_setup_node-red() {
+    echo -e "${Y}Install Node-Red and it's UPM Grove kit npm packages...${NC}\n"
+    npm install -g node-red
+    npm install -g node-red-contrib-upm
+
+    echo -e "${Y}Create & add Node-Red user to dialout group for ttyACM0 access${NC}\n"
+    useradd node-red -G dialout
+    mkdir -p /home/node-red/.node-red
+    chown -R node-red:node-red /home/node-red
+
+    echo -e "${Y}Setup imraa & Node-Red services and default flows...${NC}\n"
+    cp conf_files/node-red/node-red-experience.timer /lib/systemd/system/node-red-experience.timer
+    cp conf_files/node-red/node-red-experience.service /lib/systemd/system/node-red-experience.service
+    cp conf_files/mraa-imraa.service /lib/systemd/system/mraa-imraa.service
+    cp utils/dfu-util /usr/bin/
+
+    #run daemon-reload for this to take effect
+    systemctl daemon-reload
+
+    #Enable node-red timer which will start the service after a short time on boot
+    systemctl enable node-red-experience.timer
+}
+
 install_mraa_upm_plugins() {
     echo -e "${Y}Install MRAA, UPM and its dependencies..${NC}\n"
     add-apt-repository -y ppa:mraa/mraa
@@ -65,6 +88,9 @@ systemctl restart sshd
 
 #Install Node
 install_node
+
+#Install Node-Red
+install_and_setup_node-red
 
 #Install MRAA UPM and plugins for JS
 install_mraa_upm_plugins
