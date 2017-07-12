@@ -2,9 +2,9 @@
 
 apt update
 
-apt install wpasupplicant
+apt install wpasupplicant -y
 
-apt install wireless-tools
+apt install wireless-tools -y
 
 rm /etc/network/interfaces
 

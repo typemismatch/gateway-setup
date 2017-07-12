@@ -42,7 +42,7 @@ install_and_setup_node-red() {
     systemctl daemon-reload
 
     #Enable node-red timer which will start the service after a short time on boot
-    systemctl enable node-red-experience.timer
+    #systemctl enable node-red-experience.timer
 }
 
 install_mraa_upm_plugins() {
@@ -112,6 +112,7 @@ apt-get install nano -y
 
 #Set some of permissions
 chmod a+x /home/aws/gateway-setup/agent/lib-systemd-system/setup.sh
+chmod a+x /home/aws/gateway-setup/wifi_setup.sh
 
 #Install the FIRMATA to the Arduino
 imraa -af
