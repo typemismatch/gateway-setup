@@ -1,8 +1,8 @@
 var fs                  = require('fs');
 var async               = require('async');
 var networkutils        = require("./networkUtils");
-var ourIPAddress        = networkutils.getFirstAvailableNetworkAddress("enp3s0");
-var ourMACAddress       = networkutils.getFirstAvailableMACAddress("enp3s0");
+var ourIPAddress        = networkutils.getFirstAvailableNetworkAddress("enp3s0,wlp2s0");
+var ourMACAddress       = networkutils.getFirstAvailableMACAddress("enp3s0,wlp2s0");
 var deviceConfig        = JSON.parse(fs.readFileSync("device.config.json", 'utf8'));
 var mraa                = require ('mraa');
 var LCD                 = require ('jsupm_i2clcd');
