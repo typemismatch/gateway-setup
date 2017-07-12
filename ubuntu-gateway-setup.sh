@@ -33,9 +33,9 @@ install_and_setup_node-red() {
     chown -R node-red:node-red /home/node-red
 
     echo -e "${Y}Setup imraa & Node-Red services and default flows...${NC}\n"
-    cp conf_files/node-red/node-red-experience.timer /lib/systemd/system/node-red-experience.timer
-    cp conf_files/node-red/node-red-experience.service /lib/systemd/system/node-red-experience.service
-    cp conf_files/mraa-imraa.service /lib/systemd/system/mraa-imraa.service
+    #cp conf_files/node-red/node-red-experience.timer /lib/systemd/system/node-red-experience.timer
+    #cp conf_files/node-red/node-red-experience.service /lib/systemd/system/node-red-experience.service
+    #cp conf_files/mraa-imraa.service /lib/systemd/system/mraa-imraa.service
     cp utils/dfu-util /usr/bin/
 
     #run daemon-reload for this to take effect
