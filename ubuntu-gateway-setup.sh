@@ -115,7 +115,8 @@ chmod a+x /home/aws/gateway-setup/agent/lib-systemd-system/setup.sh
 chmod a+x /home/aws/gateway-setup/wifi_setup.sh
 
 #Install the FIRMATA to the Arduino
-imraa -af
+# This doesn't work during the install and must be done manually.
+#imraa -af
 
 #Add the cli to bash
 echo 'export PATH=~/.local/bin:$PATH' >> ~/.bash_profile
