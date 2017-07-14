@@ -4,8 +4,9 @@ var networkutils        = require("./networkUtils");
 var ourIPAddress        = networkutils.getFirstAvailableNetworkAddress("enp3s0,wlp2s0");
 var ourMACAddress       = networkutils.getFirstAvailableMACAddress("enp3s0,wlp2s0");
 var deviceConfig        = JSON.parse(fs.readFileSync("device.config.json", 'utf8'));
-var mraa                = require ('mraa');
-var LCD                 = require ('jsupm_i2clcd');
+
+//var mraa                = require ('mraa');
+//var LCD                 = require ('jsupm_i2clcd');
 
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
@@ -21,7 +22,7 @@ var LCD                 = require ('jsupm_i2clcd');
 ////////////////////////////////////////////////////////////
 
 // Setup the FIRMATA Bridge
-mraa.addSubplatform(mraa.GENERIC_FIRMATA, "/dev/ttyACM0");
+//mraa.addSubplatform(mraa.GENERIC_FIRMATA, "/dev/ttyACM0");
 
 var awsIot = require('aws-iot-device-sdk');
 
@@ -87,7 +88,7 @@ function registerDevice(next)
   };
 
 	// Update our LCD
-	try {
+	/*try {
 		var localLCD = new LCD.Jhd1313m1(512, 0x3E, 0x62);
 		localLCD.clear();
 		localLCD.setCursor(1,0);
@@ -97,7 +98,7 @@ function registerDevice(next)
 	} catch (e) {
 		log("Could not initialize the LCD display. Error: " + e);
 	}
-
+*/
 
   device.publish(deviceConfig.thingTopic, JSON.stringify(data));
   setTimeout(()=>
