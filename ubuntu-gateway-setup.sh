@@ -116,6 +116,9 @@ apt-get install nano -y
 chmod a+x /home/aws/gateway-setup/agent/lib-systemd-system/setup.sh
 chmod a+x /home/aws/gateway-setup/wifi_setup.sh
 
+#Copy dependencies
+cp /home/aws/gateway-setup/agent/device_startup/rootCA.pem /home/aws/rootCA.pem
+
 #Install the FIRMATA to the Arduino
 # This doesn't work during the install and must be done manually.
 #imraa -af
