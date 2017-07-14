@@ -44,7 +44,6 @@ install_and_setup_node-red() {
 
     #Enable node-red timer which will start the service after a short time on boot
     systemctl enable node-red-experience.timer
-    systemctl enable mraa-imraa.service
 }
 
 install_mraa_upm_plugins() {
