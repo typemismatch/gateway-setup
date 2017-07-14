@@ -36,6 +36,7 @@ install_and_setup_node-red() {
     cp conf_files/node-red/node-red-experience.timer /lib/systemd/system/node-red-experience.timer
     cp conf_files/node-red/node-red-experience.service /lib/systemd/system/node-red-experience.service
     cp conf_files/mraa-imraa.service /lib/systemd/system/mraa-imraa.service
+    cp conf_files/node-red/flows_ip.json /home/node-red/.node-red/flows_$HOSTNAME.json
     cp utils/dfu-util /usr/bin/
 
     #run daemon-reload for this to take effect
@@ -43,6 +44,7 @@ install_and_setup_node-red() {
 
     #Enable node-red timer which will start the service after a short time on boot
     systemctl enable node-red-experience.timer
+    systemctl enable mraa-imraa.service
 }
 
 install_mraa_upm_plugins() {
@@ -89,11 +91,11 @@ systemctl restart sshd
 #Install Node
 install_node
 
-#Install Node-Red
-install_and_setup_node-red
-
 #Install MRAA UPM and plugins for JS
 install_mraa_upm_plugins
+
+#Install Node-Red
+install_and_setup_node-red
 
 echo -e "${Y}Export node path(NODE_PATH) by adding it to bashrc file...${NC}\n"
 echo 'export NODE_PATH=/usr/lib/node_modules/' >> ~/.bashrc
