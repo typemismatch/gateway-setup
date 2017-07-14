@@ -120,7 +120,10 @@ cp /home/aws/gateway-setup/agent/device_startup/rootCA.pem /home/aws/rootCA.pem
 
 #Install the FIRMATA to the Arduino
 # This doesn't work during the install and must be done manually.
-#imraa -af
+imraa -af
+
+usermod aws -a -G dialout
+usermod root -a -G dialout
 
 #Add the cli to bash
 echo 'export PATH=~/.local/bin:$PATH' >> ~/.bash_profile
