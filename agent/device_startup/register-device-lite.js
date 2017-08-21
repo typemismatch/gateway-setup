@@ -69,12 +69,14 @@ function registerDevice(next)
     "thing_name" : deviceConfig.thingName,
     "last-seen" : new Date()
   };
-  device.publish(deviceConfig.thingTopic, JSON.stringify(data));
 
-	/*setTimeout(()=>
+  device.publish(deviceConfig.thingTopic, JSON.stringify(data));
+	device.publish('$aws/things/' + deviceConfig.thingName + '/shadow/get', "");
+
+	setTimeout(()=>
         {
           next();
-        }, 60000);*/
+        }, 60000);
 }
 
 function log(message)
