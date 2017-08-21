@@ -4,7 +4,7 @@ var networkutils        = require("./networkUtils");
 var ourIPAddress        = networkutils.getFirstAvailableNetworkAddress("enp3s0,wlp2s0");
 var ourMACAddress       = networkutils.getFirstAvailableMACAddress("enp3s0,wlp2s0");
 var deviceConfig        = JSON.parse(fs.readFileSync("device.config.json", 'utf8'));
-
+var workingPath         = "/home/aws/gateway-setup/agent/device_startup/";
 //var mraa                = require ('mraa');
 //var LCD                 = require ('jsupm_i2clcd');
 
@@ -112,6 +112,12 @@ function log(message)
   console.log("register-device-lite:: " + message);
 }
 
+device.on('message', function(topic,message) {
+
+	console.log(message.ToString());
+
+});
+
 device.on('connect', function() {
   console.log('Connected!');
   var message = {
@@ -119,6 +125,8 @@ device.on('connect', function() {
     "agent-status": "Online, waiting for IP discovery"
   };
   device.publish("nuc/agent", JSON.stringify(message));
+  //subscribe to our shadow so we can run the reset agent
+	device.subscribe('$aws/things/' + deviceConfig.thingName + '/shadow/update/delta');
   setTimeout(()=>
         {
           console.log("Processing into main loop ...");
