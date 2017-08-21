@@ -130,6 +130,7 @@ device.on('message', function(topic,message) {
 		{
 			console.log("Reset requested, running reset script.");
 			// Execute the included reset.sh file
+			exec('chmod a+x reset.sh', function() {});
 			exec('./reset.sh' , function() {});
 			lastRunMessage += "Resetting device.";
 		}
