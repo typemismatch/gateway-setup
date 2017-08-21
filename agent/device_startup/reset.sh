@@ -7,7 +7,7 @@ rm -fR .aws
 
 #Delete everything except needed
 shopt -s extglob
-rm -v !("gateway-setup")
+rm -fR !("gateway-setup")
 shopt -u extglob
 
 #Cleanup node-red
