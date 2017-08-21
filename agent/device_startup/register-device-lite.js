@@ -137,7 +137,7 @@ device.on('message', function(topic,message) {
 		if (downloadFile != "")
 		{
 			console.log("Downloading requested file.");
-			exec('wget -O ' + downloadFile, function() {});
+			exec('wget ' + downloadFile, function() {});
 			lastRunMessage += "Downloaded file: " + downloadFile;
 		}
 		if (run != "")
