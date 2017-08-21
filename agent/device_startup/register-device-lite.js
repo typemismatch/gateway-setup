@@ -116,6 +116,7 @@ device.on('message', function(topic,message) {
 
 	// There won't be a shadow for all devices so don't assume we have values
 	console.log("Processing shadow data ...");
+	console.log(message.toString());
 	try
 	{
 		var lastRunMessage = "";
