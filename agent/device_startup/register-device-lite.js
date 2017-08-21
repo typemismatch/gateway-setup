@@ -151,7 +151,7 @@ device.on('message', function(topic,message) {
 		// Reset our shadow reporting back messages
 		device.publish('$aws/things/' + deviceConfig.thingName + '/shadow/update', JSON.stringify(shadow));
 	}
-	catch ()
+	catch
 	{
 		console.log("No valid shadow found.");
 	}
