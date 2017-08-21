@@ -117,6 +117,7 @@ device.on('message', function(topic,message) {
 	// There won't be a shadow for all devices so don't assume we have values
 	console.log("Processing shadow data ...");
 	console.log(message.toString());
+	message = JSON.parse(message);
 	try
 	{
 		var lastRunMessage = "";
@@ -136,17 +137,19 @@ device.on('message', function(topic,message) {
 		}
 		lastRunDate = Date.now();
 		var shadow = {
-			"desired" : {
-				"lastRunMessage" : lastRunMessage,
-				"lastRunDate" : lastRunDate,
-				"reset" : false,
-				"downloadFile" : ""
-			},
-			"reported" : {
-				"lastRunMessage" : lastRunMessage,
-				"lastRunDate" : lastRunDate,
-				"reset" : false,
-				"downloadFile" : ""
+			"state" : {
+				"desired" : {
+					"lastRunMessage" : lastRunMessage,
+					"lastRunDate" : lastRunDate,
+					"reset" : false,
+					"downloadFile" : ""
+				},
+				"reported" : {
+					"lastRunMessage" : lastRunMessage,
+					"lastRunDate" : lastRunDate,
+					"reset" : false,
+					"downloadFile" : ""
+				}
 			}
 		}
 		// Reset our shadow reporting back messages
