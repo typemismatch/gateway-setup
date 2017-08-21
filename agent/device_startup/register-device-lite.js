@@ -6,24 +6,6 @@ var ourIPAddress        = networkutils.getFirstAvailableNetworkAddress("enp3s0,w
 var ourMACAddress       = networkutils.getFirstAvailableMACAddress("enp3s0,wlp2s0");
 var deviceConfig        = JSON.parse(fs.readFileSync("device.config.json", 'utf8'));
 var workingPath         = "/home/aws/gateway-setup/agent/device_startup/";
-//var mraa                = require ('mraa');
-//var LCD                 = require ('jsupm_i2clcd');
-
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-//
-// register-device-lite.js
-//
-// This is run at startup so that the device announces itself
-// and its properties to the device repository, allowing
-// easier discovery, and management (especially in terms of
-// the DHCP-allocated IP address
-//
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-
-// Setup the FIRMATA Bridge
-//mraa.addSubplatform(mraa.GENERIC_FIRMATA, "/dev/ttyACM0");
 
 var awsIot = require('aws-iot-device-sdk');
 
@@ -87,25 +69,12 @@ function registerDevice(next)
     "thing_name" : deviceConfig.thingName,
     "last-seen" : new Date()
   };
-
-	// Update our LCD
-	/*try {
-		var localLCD = new LCD.Jhd1313m1(512, 0x3E, 0x62);
-		localLCD.clear();
-		localLCD.setCursor(1,0);
-		localLCD.write(ourIPAddress);
-	  localLCD.setCursor(0,0);
-		localLCD.write("I am " + deviceConfig.thingName + " on");
-	} catch (e) {
-		log("Could not initialize the LCD display. Error: " + e);
-	}
-*/
-
   device.publish(deviceConfig.thingTopic, JSON.stringify(data));
-  setTimeout(()=>
+
+	/*setTimeout(()=>
         {
           next();
-        }, 60000);
+        }, 60000);*/
 }
 
 function log(message)
