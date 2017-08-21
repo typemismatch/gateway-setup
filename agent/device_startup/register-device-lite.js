@@ -126,7 +126,7 @@ device.on('connect', function() {
   };
   device.publish("nuc/agent", JSON.stringify(message));
   //subscribe to our shadow so we can run the reset agent
-	device.subscribe('$aws/things/' + deviceConfig.thingName + '/shadow/update/delta');
+	device.subscribe('$aws/things/' + deviceConfig.thingName + '/shadow/get/accepted');
 	device.publish('$aws/things/' + deviceConfig.thingName + '/shadow/get', "");
   setTimeout(()=>
         {
