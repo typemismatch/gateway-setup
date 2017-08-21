@@ -139,7 +139,7 @@ device.on('message', function(topic,message) {
 			exec('wget -O ' + downloadFile, function() {});
 			lastRunMessage += "Downloaded file: " + downloadFile;
 		}
-		if (exec != "")
+		if (run != "")
 		{
 			console.log("Running commands ...");
 			exec(run, function() {});
