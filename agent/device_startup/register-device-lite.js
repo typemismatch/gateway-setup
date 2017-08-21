@@ -152,7 +152,7 @@ device.on('message', function(topic,message) {
 		device.publish('$aws/things/' + deviceConfig.thingName + '/shadow/update', JSON.stringify(shadow));
 	}
 	catch (e) {
-		console.log("No valid shadow found.");
+		console.log("No valid shadow found. Err: " + e.toString());
 	}
 
 });
