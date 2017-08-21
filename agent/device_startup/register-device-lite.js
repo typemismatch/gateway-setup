@@ -114,7 +114,7 @@ function log(message)
 
 device.on('message', function(topic,message) {
 
-	console.log(message.ToString());
+	console.log(message.toString());
 
 });
 
