@@ -114,7 +114,47 @@ function log(message)
 
 device.on('message', function(topic,message) {
 
-	console.log(message.toString());
+	// There won't be a shadow for all devices so don't assume we have values
+	console.log("Processing shadow data ...");
+	try
+	{
+		var lastRunMessage = "";
+		var lastRunDate = "";
+		var reset = message.state.desired.reset;
+		var downloadFile = message.state.desired.downloadFile;
+		if (reset)
+		{
+			console.log("Reset requested, running reset script.");
+			// Execute the included reset.sh file
+			lastRunMessage += "Resetting device.";
+		}
+		if (downloadFile != "")
+		{
+			console.log("Downloading requested file.");
+			lastRunMessage += "Downloaded file: " + downloadFile;
+		}
+		lastRunDate = Date.now();
+		var shadow = {
+			"desired" : {
+				"lastRunMessage" : lastRunMessage,
+				"lastRunDate" : lastRunDate,
+				"reset" : false,
+				"downloadFile" : ""
+			},
+			"reported" : {
+				"lastRunMessage" : lastRunMessage,
+				"lastRunDate" : lastRunDate,
+				"reset" : false,
+				"downloadFile" : ""
+			}
+		}
+		// Reset our shadow reporting back messages
+		device.publish('$aws/things/' + deviceConfig.thingName + '/shadow/update', JSON.stringify(shadow));
+	}
+	catch ()
+	{
+		console.log("No valid shadow found.");
+	}
 
 });
 
