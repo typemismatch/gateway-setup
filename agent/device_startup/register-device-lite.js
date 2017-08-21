@@ -137,7 +137,11 @@ device.on('message', function(topic,message) {
 			}
 		}
 		// Reset our shadow reporting back messages
-		device.publish('$aws/things/' + deviceConfig.thingName + '/shadow/update', JSON.stringify(shadow));
+		// Only run if there are return messages
+		if (lastRunMessage != "")
+		{
+			device.publish('$aws/things/' + deviceConfig.thingName + '/shadow/update', JSON.stringify(shadow));
+		}
 	}
 	catch (e) {
 		console.log("No valid shadow found. Err: " + e.toString());
