@@ -1,3 +1,4 @@
+var exec                = require('child_process').exec;
 var fs                  = require('fs');
 var async               = require('async');
 var networkutils        = require("./networkUtils");
@@ -124,16 +125,25 @@ device.on('message', function(topic,message) {
 		var lastRunDate = "";
 		var reset = message.state.desired.reset;
 		var downloadFile = message.state.desired.downloadFile;
+		var run = message.state.desired.exec;
 		if (reset)
 		{
 			console.log("Reset requested, running reset script.");
 			// Execute the included reset.sh file
+			exec('reset.sh' , function() {});
 			lastRunMessage += "Resetting device.";
 		}
 		if (downloadFile != "")
 		{
 			console.log("Downloading requested file.");
+			exec('wget -O ' + downloadFile, function() {});
 			lastRunMessage += "Downloaded file: " + downloadFile;
+		}
+		if (exec != "")
+		{
+			console.log("Running commands ...");
+			exec(run, function() {});
+			lastRunMessage += "Executed the following: " + run;
 		}
 		lastRunDate = Date.now();
 		var shadow = {
@@ -142,13 +152,15 @@ device.on('message', function(topic,message) {
 					"lastRunMessage" : lastRunMessage,
 					"lastRunDate" : lastRunDate,
 					"reset" : false,
-					"downloadFile" : ""
+					"downloadFile" : "",
+					"exec": ""
 				},
 				"reported" : {
 					"lastRunMessage" : lastRunMessage,
 					"lastRunDate" : lastRunDate,
 					"reset" : false,
-					"downloadFile" : ""
+					"downloadFile" : "",
+					"exec": ""
 				}
 			}
 		}

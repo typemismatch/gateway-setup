@@ -114,6 +114,7 @@ apt-get install nano -y
 #Set some of permissions
 chmod a+x /home/aws/gateway-setup/agent/lib-systemd-system/setup.sh
 chmod a+x /home/aws/gateway-setup/wifi_setup.sh
+chmod a+x /home/aws/gateway-setup/agent/device_startup/reset.sh
 
 #Copy dependencies
 cp /home/aws/gateway-setup/agent/device_startup/rootCA.pem /home/aws/rootCA.pem
